@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access to orders collection
+    // In production, you might want to add more validation
+    match /orders/{document} {
+      allow read, write: if true;
+      // Alternative: allow create only with valid data
+      // allow create: if request.resource.data.keys().hasAll(['nomComplet', 'telephone', 'adresse', 'typeLivraison', 'statut', 'dateCreation']);
+    }
+    
+    // Allow admin access to all collections (for admin dashboard)
+    match /{document=**} {
+      allow read, write: if request.auth != null && 
+        request.auth.token.email in ['admin@pharmarapide.ma', 'housqwer1@gmail.com'];
+    }
+  }
+} 
