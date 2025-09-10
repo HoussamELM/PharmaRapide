@@ -1,3 +1,8 @@
+'use client';
+
+import { useState } from 'react';
+import Logo from '@/components/Logo';
+
 interface AdminSidebarProps {
   onLogout: () => void;
   currentView: 'orders' | 'reviews';
@@ -11,9 +16,7 @@ export default function AdminSidebar({ onLogout, currentView, onViewChange }: Ad
         {/* Header */}
         <div className="flex items-center justify-center h-16 px-4 border-b border-gray-200">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
+            <Logo className="w-8 h-8 mr-3" />
             <span className="text-lg font-semibold text-gray-900">Pharmarapide</span>
           </div>
         </div>
